@@ -56,12 +56,7 @@
 </section>
     
 
-   <!-- history section -->
-   <section id="history-section" class="w-11/12 hidden mx-auto">
-    <div id="history-text" class="flex flex-col gap-6">
-        
-    </div>
-    </section>
+
    
   
 
@@ -140,7 +135,7 @@
                 <div class=" lg:w-[60%] space-y-3 px-8 py-8">
                     <div class="w-28 h-11 rounded-lg bg-gray-200  flex items-center justify-center flex-row gap-2">
                         <img src="./assets/coin.png" alt="">
-                        <p><span id="card-blance1">2400</span> BDT</p>
+                        <p><span id="quota-donet">2400</span> BDT</p>
                     </div>
 
                     <h2 id="card-title-3" class="text-2xl font-bold text-[#111111]">Aid for Injured in the Quota Movement</h2>
@@ -155,9 +150,24 @@
                          
 
 
-                    <button id="quota-btn" class="btn btn-block bg-[#B4F461]">Donate Now</button>
+                    <button id="quota-btn" class="btn btn-block bg-[#B4F461]"
+                    onclick="my_modal_5.show()">Donate Now</button>
                     
-                    
+                    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+                        <div class="modal-box flex flex-col items-center gap-2">
+                            <h3 class="text-4xl font-bold">Congrates!</h3>
+                            <img class="w-12 pt-3" src="./assets/coin.png" alt="">
+                            <p class="py-4">You have Donated for Humankind
+                            </p>
+                            <h3 class="text-xl font-bold">Successfully</h3>
+                            <div class="modal-action">
+                                <form method="dialog">
+                                    <!-- if there is a button in form, it will close the modal -->
+                                    <button class="btn">Close confirmation</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
 
                 </div>
             </div>
@@ -165,11 +175,10 @@
            
            
     </section>
-    <div class="mt-16 h-32 bg-[#F9F7F3]">
+    <div id="footer" class="mt-16 h-32 bg-[#F9F7F3]">
             
     </div>
-        
- 
+        <div id="history-list" class="hidden"></div>
   
     
 

@@ -16,32 +16,32 @@ document.getElementById('btn-click').addEventListener('click',function(){
     window.location.href ="blog.html"
 })
 
-console.log('robin vai');
 
-// history
 const historyBtns = document.getElementById('history-btn')
 const donationBtns = document.getElementById('donation-btn');
+const history = document.getElementById('history-list');
+const allCard = document.getElementById('card-all')
+const footers = document.getElementById('footer')
+// history
 historyBtns.addEventListener('click',function(){
 
     historyBtn.classList.add('bg-[#B4F461]')
     donationBtn.classList.remove('bg-[#B4F461]')
-
-    donationBtn.addEventListener('click', function() {
-        historyBtn.classList.remove('bg-[#B4F461]')
-        donationBtn.classList.add('bg-[#B4F461]')
-    }) 
-
-
-    document.getElementById('card-all').classList.add('hidden')
+    allCard.classList.add('hidden')
+    history.classList.remove('hidden')
+    footers.classList.add('hidden')
+ 
     // some thing in there
     
+    
 })
-
 donationBtns.addEventListener('click',function(){
 
     donationBtn.classList.add('bg-[#B4F461]')
     historyBtn.classList.remove('bg-[#B4F461]')
-    document.getElementById('card-all').classList.remove('hidden')
+    allCard.classList.remove('hidden')
+    history.classList.add('hidden')
+    footers.classList.remove('hidden')
 })
 
 // first coice
@@ -54,15 +54,6 @@ const mainBlanceEl = parseFloat(document.getElementById('mian-balance').innerTex
 const historyTeextChange = document.getElementById('history-text');
 console.log(mainBlanceEl);
 
-let currentTime = new Date();
-const WeekIntext = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const mounthInText = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-];
-
-
-// start on the section
 
 // card 1
 document.getElementById('noakhali-btn').addEventListener('click', function () {
@@ -80,34 +71,30 @@ document.getElementById('noakhali-btn').addEventListener('click', function () {
 
 
 
-        const corruntDay = currentTime.getDay();
-        const dayTextR = WeekIntext[corruntDay];
-
-        const monthText = currentTime.getMonth();
-        const monthInR = mounthInText[monthText];
-
-        const h1Is = document.getElementById('card-title-1').innerText;
-        historyTeextChange.innerHTML += `
-        <div class="border rounded-lg">
-
-            
-                <h1 class="text-xl font-bold mb-4  px-8 pt-8">${inputvalue1} Taka is Donated for ${h1Is}</h1>
-                <p class="text-sm font-light  p-8 pt-0">Date: ${dayTextR} ${monthInR} ${currentTime.getDate()} ${currentTime.getFullYear()} ${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()} GMT +0600 (Bangladesh Standard Time)</p></div>
-    `
-
-
-        document.getElementById('noakhali-btn').value = '';
-        document.getElementById('feni-btn').addEventListener(onclick = my_modal_5.show());
+        
+        const historyItem = document.createElement('div');
+        historyItem.className = 'border-2 p-5 rounded-md w-11/12 mx-auto mb-5'
+        historyItem.innerHTML = `
+        <h1 class="font-bold text-xl "> <span id="history-balance">96500</span> Donate for Flood at Noakhali, Bangladesh </h1>
+        <p id="date"></p>
+        `;
+            const historyList = document.getElementById("history-list");
+            historyList.insertBefore(historyItem, historyList.firstChild)
+            document.getElementById('history-balance').innerText = inputvalue1;
+            const dates = 'Date : ';
+            const currentDate = new Date();
+            document.getElementById('date').innerText = dates + currentDate.toString();
 
 
-
-
+            // congratulation interface
+            document.getElementById('noakhali-input').value = '';
+            document.getElementById('noakhali-btn').addEventListener(onclick = my_modal_5.show());
 
     }
 
 
 })
-console.log('robin');
+
 
 // card 2
 document.getElementById('feni-btn').addEventListener('click', function () {
@@ -124,26 +111,63 @@ document.getElementById('feni-btn').addEventListener('click', function () {
         document.getElementById('mian-balance').innerText = divide;
 
 
-        const corruntDay = currentTime.getDay();
-        const dayTextR = WeekIntext[corruntDay];
+        const historyItem = document.createElement('div');
+        historyItem.className = 'border-2 p-5 rounded-md w-11/12 mx-auto mb-5'
+        historyItem.innerHTML = `
+        <h1 class="font-bold text-xl "> <span id="history-balance">96500</span> Donate for Flood Relief in Feni,Bangladesh </h1>
+        <p id="date"></p>
+        `;
+            const historyList = document.getElementById("history-list");
+            historyList.insertBefore(historyItem, historyList.firstChild)
+            document.getElementById('history-balance').innerText = inputvalue;
+            const dates = 'Date : ';
+            const currentDate = new Date();
+            document.getElementById('date').innerText = dates + currentDate.toString();
 
-        const monthText = currentTime.getMonth();
-        const monthInR = mounthInText[monthText];
-
-        const h1Is = document.getElementById('card2-tittle').innerText;
-        historyTeextChange.innerHTML += `
-        <div class="border rounded-lg">
-
-            
-                <h1 class="text-xl font-bold mb-4  px-8 pt-8">${inputvalue} Taka is Donated for ${h1Is}</h1>
-                <p class="text-sm font-light  p-8 pt-0">Date: ${dayTextR} ${monthInR} ${currentTime.getDate()} ${currentTime.getFullYear()} ${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()} GMT +0600 (Bangladesh Standard Time)</p></div>
-    `
-
-        document.getElementById('feni-input').value = '';
-
-        document.getElementById('feni-btn').addEventListener(onclick = my_modal_4.show());
+            // congratulation interface
+            document.getElementById('feni-input').value = '';
+            document.getElementById('feni-btn').addEventListener(onclick = my_modal_5.show());
     }
 
 
 
+})
+
+
+
+
+// card 3 
+
+
+document.getElementById('quota-btn').addEventListener('click', function () {
+    const inputvalue = parseFloat(document.getElementById('quouta-input').value);
+    if (inputvalue <= 0 || mainBlanceEl < inputvalue || isNaN(inputvalue)) {
+        alert("Your amount in Invalid");
+
+    }
+    else {
+        const cardBlan3 = parseFloat(document.getElementById('quota-donet').innerText);
+        const sum = donateSum(inputvalue, cardBlan3);
+        document.getElementById('quota-donet').innerText = sum;
+        const divide = mainBlance(inputvalue, mainBlanceEl);
+        document.getElementById('mian-balance').innerText = divide;
+
+        const historyItem = document.createElement('div');
+        historyItem.className = 'border-2 p-5 rounded-md w-11/12 mx-auto mb-5'
+        historyItem.innerHTML = `
+        <h1 class="font-bold text-xl "> <span id="history-balance">96500</span> Aid for Injured in the Quota Movement </h1>
+        <p id="date"></p>
+        `;
+            const historyList = document.getElementById("history-list");
+            historyList.insertBefore(historyItem, historyList.firstChild)
+            document.getElementById('history-balance').innerText = inputvalue;
+            const dates = 'Date : ';
+            const currentDate = new Date();
+            document.getElementById('date').innerText = dates + currentDate.toString()
+
+            // congratulation interface
+            document.getElementById('quouta-input').value = '';
+            document.getElementById('quota-btn').addEventListener(onclick = my_modal_5.show());
+    
+    }
 })
